@@ -8,6 +8,7 @@ import java.util.List;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
+import androidx.lifecycle.Observer;
 
 /**
  * Repository handling the work with products and comments.
@@ -24,9 +25,12 @@ public class DataRepository {
         mObservableProducts = new MediatorLiveData<>();
 
         mObservableProducts.addSource(mDatabase.productDao().loadAllProducts(),
-                productEntities -> {
-                    if (mDatabase.getDatabaseCreated().getValue() != null) {
-                        mObservableProducts.postValue(productEntities);
+                new Observer<List<ProductEntity>>() {
+                    @Override
+                    public void onChanged(List<ProductEntity> productEntities) {
+                        if (mDatabase.getDatabaseCreated().getValue() != null) {
+                            mObservableProducts.postValue(productEntities);
+                        }
                     }
                 });
     }

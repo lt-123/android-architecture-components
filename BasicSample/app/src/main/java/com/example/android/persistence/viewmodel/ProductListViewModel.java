@@ -27,6 +27,7 @@ import java.util.List;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
+import androidx.lifecycle.Observer;
 
 public class ProductListViewModel extends AndroidViewModel {
 
@@ -46,7 +47,12 @@ public class ProductListViewModel extends AndroidViewModel {
         LiveData<List<ProductEntity>> products = mRepository.getProducts();
 
         // observe the changes of the products from the database and forward them
-        mObservableProducts.addSource(products, mObservableProducts::setValue);
+        mObservableProducts.addSource(products, new Observer<List<ProductEntity>>() {
+            @Override
+            public void onChanged(List<ProductEntity> productEntities) {
+                mObservableProducts.setValue(productEntities);
+            }
+        });
     }
 
     /**

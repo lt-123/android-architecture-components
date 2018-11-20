@@ -83,18 +83,21 @@ public abstract class AppDatabase extends RoomDatabase {
                     @Override
                     public void onCreate(@NonNull SupportSQLiteDatabase db) {
                         super.onCreate(db);
-                        executors.diskIO().execute(() -> {
-                            // Add a delay to simulate a long-running operation
-                            addDelay();
-                            // Generate the data for pre-population
-                            AppDatabase database = AppDatabase.getInstance(appContext, executors);
-                            List<ProductEntity> products = DataGenerator.generateProducts();
-                            List<CommentEntity> comments =
-                                    DataGenerator.generateCommentsForProducts(products);
+                        executors.diskIO().execute(new Runnable() {
+                            @Override
+                            public void run() {
+                                // Add a delay to simulate a long-running operation
+                                addDelay();
+                                // Generate the data for pre-population
+                                AppDatabase database = AppDatabase.getInstance(appContext, executors);
+                                List<ProductEntity> products = DataGenerator.generateProducts();
+                                List<CommentEntity> comments =
+                                        DataGenerator.generateCommentsForProducts(products);
 
-                            insertData(database, products, comments);
-                            // notify that the database was created and it's ready to be used
-                            database.setDatabaseCreated();
+                                insertData(database, products, comments);
+                                // notify that the database was created and it's ready to be used
+                                database.setDatabaseCreated();
+                            }
                         });
                     }
                 })
@@ -104,9 +107,13 @@ public abstract class AppDatabase extends RoomDatabase {
 
     private static void insertData(final AppDatabase database, final List<ProductEntity> products,
                                    final List<CommentEntity> comments) {
-        database.runInTransaction(() -> {
-            database.productDao().insertAll(products);
-            database.commentDao().insertAll(comments);
+
+        database.runInTransaction(new Runnable() {
+            @Override
+            public void run() {
+                database.productDao().insertAll(products);
+                database.commentDao().insertAll(comments);
+            }
         });
     }
 
