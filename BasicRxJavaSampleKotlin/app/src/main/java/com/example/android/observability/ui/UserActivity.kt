@@ -16,10 +16,10 @@
 
 package com.example.android.observability.ui
 
-import androidx.lifecycle.ViewModelProviders
 import android.os.Bundle
-import androidx.appcompat.app.AppCompatActivity
 import android.util.Log
+import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.ViewModelProviders
 import com.example.android.observability.Injection
 import com.example.android.observability.R
 import io.reactivex.android.schedulers.AndroidSchedulers

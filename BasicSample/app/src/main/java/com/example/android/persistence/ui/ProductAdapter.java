@@ -26,6 +26,7 @@ import com.example.android.persistence.model.Product;
 import java.util.List;
 import java.util.Objects;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.recyclerview.widget.DiffUtil;
@@ -35,7 +36,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
     @Nullable
     private final ProductClickCallback mProductClickCallback;
-    List<? extends Product> mProductList;
+    private List<? extends Product> mProductList;
 
     public ProductAdapter(@Nullable ProductClickCallback clickCallback) {
         mProductClickCallback = clickCallback;
@@ -79,8 +80,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         }
     }
 
+    @NonNull
     @Override
-    public ProductViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+    public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ProductItemBinding binding = DataBindingUtil
                 .inflate(LayoutInflater.from(parent.getContext()), R.layout.product_item,
                         parent, false);
@@ -89,7 +91,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     }
 
     @Override
-    public void onBindViewHolder(ProductViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ProductViewHolder holder, int position) {
         holder.binding.setProduct(mProductList.get(position));
         holder.binding.executePendingBindings();
     }
@@ -108,7 +110,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
 
         final ProductItemBinding binding;
 
-        public ProductViewHolder(ProductItemBinding binding) {
+        ProductViewHolder(ProductItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

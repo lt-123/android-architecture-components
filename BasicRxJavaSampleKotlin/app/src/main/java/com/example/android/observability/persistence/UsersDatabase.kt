@@ -16,10 +16,10 @@
 
 package com.example.android.observability.persistence
 
+import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import android.content.Context
 
 /**
  * The Room database that contains the Users table
@@ -31,7 +31,8 @@ abstract class UsersDatabase : RoomDatabase() {
 
     companion object {
 
-        @Volatile private var INSTANCE: UsersDatabase? = null
+        @Volatile
+        private var INSTANCE: UsersDatabase? = null
 
         fun getInstance(context: Context): UsersDatabase =
                 INSTANCE ?: synchronized(this) {
