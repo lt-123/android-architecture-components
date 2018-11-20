@@ -16,17 +16,6 @@
 
 package com.example.android.persistence.db;
 
-import static com.example.android.persistence.db.TestData.PRODUCTS;
-import static com.example.android.persistence.db.TestData.PRODUCT_ENTITY;
-
-import static junit.framework.Assert.assertTrue;
-
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
-import androidx.room.Room;
-import androidx.test.InstrumentationRegistry;
-import androidx.test.runner.AndroidJUnit4;
 import com.example.android.persistence.LiveDataTestUtil;
 import com.example.android.persistence.db.dao.ProductDao;
 import com.example.android.persistence.db.entity.ProductEntity;
@@ -38,6 +27,17 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.List;
+
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
+import androidx.room.Room;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.runner.AndroidJUnit4;
+
+import static com.example.android.persistence.db.TestData.PRODUCTS;
+import static com.example.android.persistence.db.TestData.PRODUCT_ENTITY;
+import static junit.framework.Assert.assertTrue;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Test the implementation of {@link ProductDao}

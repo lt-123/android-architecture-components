@@ -17,12 +17,6 @@
 package com.example.android.persistence.viewmodel;
 
 import android.app.Application;
-import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
-import androidx.lifecycle.ViewModelProvider;
-import androidx.databinding.ObservableField;
-import androidx.annotation.NonNull;
 
 import com.example.android.persistence.BasicApp;
 import com.example.android.persistence.DataRepository;
@@ -31,18 +25,22 @@ import com.example.android.persistence.db.entity.ProductEntity;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
+import androidx.databinding.ObservableField;
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.ViewModelProvider;
+
 public class ProductViewModel extends AndroidViewModel {
 
     private final LiveData<ProductEntity> mObservableProduct;
-
+    private final int mProductId;
+    private final LiveData<List<CommentEntity>> mObservableComments;
     public ObservableField<ProductEntity> product = new ObservableField<>();
 
-    private final int mProductId;
-
-    private final LiveData<List<CommentEntity>> mObservableComments;
-
     public ProductViewModel(@NonNull Application application, DataRepository repository,
-            final int productId) {
+                            final int productId) {
         super(application);
         mProductId = productId;
 

@@ -16,8 +16,9 @@
 
 package com.example.android.persistence.ui;
 
-import androidx.databinding.BindingAdapter;
 import android.view.View;
+
+import androidx.databinding.BindingAdapter;
 
 
 public class BindingAdapters {

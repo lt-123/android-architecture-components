@@ -16,8 +16,9 @@
 
 package com.example.android.persistence.db.converter;
 
-import androidx.room.TypeConverter;
 import java.util.Date;
+
+import androidx.room.TypeConverter;
 
 public class DateConverter {
     @TypeConverter

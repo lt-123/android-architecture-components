@@ -17,11 +17,12 @@
 package com.example.android.persistence.ui;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.android.persistence.R;
 import com.example.android.persistence.model.Product;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -38,7 +39,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    /** Shows the product detail fragment */
+    /**
+     * Shows the product detail fragment
+     */
     public void show(Product product) {
 
         ProductFragment productFragment = ProductFragment.forProduct(product.getId());

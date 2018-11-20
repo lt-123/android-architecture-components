@@ -16,18 +16,11 @@
 
 package com.example.android.persistence.ui;
 
-import android.text.Editable;
-import android.view.View.OnClickListener;
-import androidx.lifecycle.Lifecycle;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import com.example.android.persistence.R;
@@ -38,18 +31,33 @@ import com.example.android.persistence.viewmodel.ProductListViewModel;
 
 import java.util.List;
 
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Lifecycle;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
 public class ProductListFragment extends Fragment {
 
     public static final String TAG = "ProductListViewModel";
+    private final ProductClickCallback mProductClickCallback = new ProductClickCallback() {
+        @Override
+        public void onClick(Product product) {
 
+            if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
+                ((MainActivity) getActivity()).show(product);
+            }
+        }
+    };
     private ProductAdapter mProductAdapter;
-
     private ListFragmentBinding mBinding;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
+                             @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.list_fragment, container, false);
 
         mProductAdapter = new ProductAdapter(mProductClickCallback);
@@ -96,14 +104,4 @@ public class ProductListFragment extends Fragment {
             }
         });
     }
-
-    private final ProductClickCallback mProductClickCallback = new ProductClickCallback() {
-        @Override
-        public void onClick(Product product) {
-
-            if (getLifecycle().getCurrentState().isAtLeast(Lifecycle.State.STARTED)) {
-                ((MainActivity) getActivity()).show(product);
-            }
-        }
-    };
 }

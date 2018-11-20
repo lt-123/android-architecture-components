@@ -3,14 +3,15 @@ package com.example.android.persistence;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
-import androidx.test.rule.ActivityTestRule;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.ProgressBar;
+
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ProgressBar;
+import androidx.test.rule.ActivityTestRule;
 
 /**
  * Utility methods for espresso tests.
@@ -28,7 +29,7 @@ public class EspressoTestUtil {
                         new FragmentManager.FragmentLifecycleCallbacks() {
                             @Override
                             public void onFragmentViewCreated(FragmentManager fm, Fragment f, View v,
-                                    Bundle savedInstanceState) {
+                                                              Bundle savedInstanceState) {
                                 // traverse all views, if any is a progress bar, replace its animation
                                 traverseViews(v);
                             }

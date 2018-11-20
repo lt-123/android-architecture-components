@@ -16,26 +16,26 @@
 
 package com.example.android.persistence.ui;
 
-import androidx.databinding.DataBindingUtil;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.example.android.persistence.R;
 import com.example.android.persistence.databinding.ProductItemBinding;
 import com.example.android.persistence.model.Product;
-import com.example.android.persistence.R;
 
 import java.util.List;
 import java.util.Objects;
 
-public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.RecyclerView;
 
-    List<? extends Product> mProductList;
+public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     @Nullable
     private final ProductClickCallback mProductClickCallback;
+    List<? extends Product> mProductList;
 
     public ProductAdapter(@Nullable ProductClickCallback clickCallback) {
         mProductClickCallback = clickCallback;

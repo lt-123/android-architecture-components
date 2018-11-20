@@ -16,21 +16,8 @@
 
 package com.example.android.persistence.db;
 
-import static com.example.android.persistence.db.TestData.COMMENTS;
-import static com.example.android.persistence.db.TestData.COMMENT_ENTITY;
-import static com.example.android.persistence.db.TestData.PRODUCTS;
-
-import static junit.framework.Assert.assertTrue;
-import static junit.framework.Assert.fail;
-
-import static org.hamcrest.Matchers.is;
-import static org.junit.Assert.assertThat;
-
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
-import androidx.room.Room;
 import android.database.sqlite.SQLiteConstraintException;
-import androidx.test.InstrumentationRegistry;
-import androidx.test.runner.AndroidJUnit4;
+
 import com.example.android.persistence.LiveDataTestUtil;
 import com.example.android.persistence.db.dao.CommentDao;
 import com.example.android.persistence.db.dao.ProductDao;
@@ -43,6 +30,19 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import java.util.List;
+
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
+import androidx.room.Room;
+import androidx.test.InstrumentationRegistry;
+import androidx.test.runner.AndroidJUnit4;
+
+import static com.example.android.persistence.db.TestData.COMMENTS;
+import static com.example.android.persistence.db.TestData.COMMENT_ENTITY;
+import static com.example.android.persistence.db.TestData.PRODUCTS;
+import static junit.framework.Assert.assertTrue;
+import static junit.framework.Assert.fail;
+import static org.hamcrest.Matchers.is;
+import static org.junit.Assert.assertThat;
 
 /**
  * Test the implementation of {@link CommentDao}

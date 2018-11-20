@@ -17,13 +17,16 @@
 package com.example.android.persistence.viewmodel;
 
 import android.app.Application;
-import androidx.lifecycle.AndroidViewModel;
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
+
 import com.example.android.persistence.BasicApp;
 import com.example.android.persistence.DataRepository;
 import com.example.android.persistence.db.entity.ProductEntity;
+
 import java.util.List;
+
+import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 
 public class ProductListViewModel extends AndroidViewModel {
 

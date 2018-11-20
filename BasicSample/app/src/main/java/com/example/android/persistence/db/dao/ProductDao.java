@@ -16,14 +16,15 @@
 
 package com.example.android.persistence.db.dao;
 
+import com.example.android.persistence.db.entity.ProductEntity;
+
+import java.util.List;
+
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-import com.example.android.persistence.db.entity.ProductEntity;
-
-import java.util.List;
 
 @Dao
 public interface ProductDao {
@@ -40,6 +41,6 @@ public interface ProductDao {
     ProductEntity loadProductSync(int productId);
 
     @Query("SELECT products.* FROM products JOIN productsFts ON (products.id = productsFts.rowid) "
-        + "WHERE productsFts MATCH :query")
+            + "WHERE productsFts MATCH :query")
     LiveData<List<ProductEntity>> searchAllProducts(String query);
 }

@@ -16,10 +16,11 @@
 
 package com.example.android.persistence.db.entity;
 
+import com.example.android.persistence.model.Product;
+
 import androidx.room.Entity;
 import androidx.room.Ignore;
 import androidx.room.PrimaryKey;
-import com.example.android.persistence.model.Product;
 
 @Entity(tableName = "products")
 public class ProductEntity implements Product {
@@ -28,6 +29,24 @@ public class ProductEntity implements Product {
     private String name;
     private String description;
     private int price;
+
+    public ProductEntity() {
+    }
+
+    @Ignore
+    public ProductEntity(int id, String name, String description, int price) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.price = price;
+    }
+
+    public ProductEntity(Product product) {
+        this.id = product.getId();
+        this.name = product.getName();
+        this.description = product.getDescription();
+        this.price = product.getPrice();
+    }
 
     @Override
     public int getId() {
@@ -63,23 +82,5 @@ public class ProductEntity implements Product {
 
     public void setPrice(int price) {
         this.price = price;
-    }
-
-    public ProductEntity() {
-    }
-
-    @Ignore
-    public ProductEntity(int id, String name, String description, int price) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.price = price;
-    }
-
-    public ProductEntity(Product product) {
-        this.id = product.getId();
-        this.name = product.getName();
-        this.description = product.getDescription();
-        this.price = product.getPrice();
     }
 }

@@ -1,5 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!--
+<?xml version="1.0" encoding="utf-8"?><!--
   ~ Copyright 2017, The Android Open Source Project
   ~
   ~ Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,49 +15,54 @@
   -->
 
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
     <data>
-        <variable name="product"
-                  type="com.example.android.persistence.model.Product"/>
-        <variable name="callback"
-                  type="com.example.android.persistence.ui.ProductClickCallback"/>
+
+        <variable
+            name="product"
+            type="com.example.android.persistence.model.Product" />
+
+        <variable
+            name="callback"
+            type="com.example.android.persistence.ui.ProductClickCallback" />
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/item_horizontal_margin"
+        android:layout_marginEnd="@dimen/item_horizontal_margin"
         android:minHeight="@dimen/product_item_min_height"
         android:onClick="@{() ->  callback.onClick(product)}"
         android:orientation="horizontal"
-        android:layout_marginStart="@dimen/item_horizontal_margin"
-        android:layout_marginEnd="@dimen/item_horizontal_margin"
         app:cardUseCompatPadding="true">
 
         <RelativeLayout
-            android:layout_marginStart="@dimen/item_horizontal_margin"
-            android:layout_marginEnd="@dimen/item_horizontal_margin"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/item_horizontal_margin"
+            android:layout_marginEnd="@dimen/item_horizontal_margin">
 
             <TextView
                 android:id="@+id/name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:contentDescription="@string/cd_product_name"
-                android:text="@{product.name}"/>
+                android:text="@{product.name}" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:layout_marginEnd="5dp"
-                android:text="@{@string/product_price(product.price)}"/>
+                android:text="@{@string/product_price(product.price)}" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/name"
-                android:text="@{product.description}"/>
+                android:text="@{product.description}" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

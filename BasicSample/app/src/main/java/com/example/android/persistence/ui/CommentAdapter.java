@@ -16,26 +16,26 @@
 
 package com.example.android.persistence.ui;
 
-import androidx.databinding.DataBindingUtil;
-import androidx.annotation.Nullable;
-import androidx.recyclerview.widget.DiffUtil;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
 
+import com.example.android.persistence.R;
 import com.example.android.persistence.databinding.CommentItemBinding;
 import com.example.android.persistence.model.Comment;
-import com.example.android.persistence.R;
 
 import java.util.List;
 import java.util.Objects;
 
-public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentViewHolder> {
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.recyclerview.widget.DiffUtil;
+import androidx.recyclerview.widget.RecyclerView;
 
-    private List<? extends Comment> mCommentList;
+public class CommentAdapter extends RecyclerView.Adapter<CommentAdapter.CommentViewHolder> {
 
     @Nullable
     private final CommentClickCallback mCommentClickCallback;
+    private List<? extends Comment> mCommentList;
 
     public CommentAdapter(@Nullable CommentClickCallback commentClickCallback) {
         mCommentClickCallback = commentClickCallback;

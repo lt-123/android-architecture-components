@@ -1,12 +1,13 @@
 package com.example.android.persistence;
 
-import androidx.lifecycle.LiveData;
-import androidx.lifecycle.MediatorLiveData;
 import com.example.android.persistence.db.AppDatabase;
 import com.example.android.persistence.db.entity.CommentEntity;
 import com.example.android.persistence.db.entity.ProductEntity;
 
 import java.util.List;
+
+import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 
 /**
  * Repository handling the work with products and comments.

@@ -16,14 +16,15 @@
 
 package com.example.android.persistence.db.entity;
 
+import com.example.android.persistence.model.Comment;
+
+import java.util.Date;
+
 import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.Ignore;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
-import com.example.android.persistence.model.Comment;
-
-import java.util.Date;
 
 @Entity(tableName = "comments",
         foreignKeys = {
@@ -39,6 +40,17 @@ public class CommentEntity implements Comment {
     private int productId;
     private String text;
     private Date postedAt;
+
+    public CommentEntity() {
+    }
+
+    @Ignore
+    public CommentEntity(int id, int productId, String text, Date postedAt) {
+        this.id = id;
+        this.productId = productId;
+        this.text = text;
+        this.postedAt = postedAt;
+    }
 
     @Override
     public int getId() {
@@ -73,17 +85,6 @@ public class CommentEntity implements Comment {
     }
 
     public void setPostedAt(Date postedAt) {
-        this.postedAt = postedAt;
-    }
-
-    public CommentEntity() {
-    }
-
-    @Ignore
-    public CommentEntity(int id, int productId, String text, Date postedAt) {
-        this.id = id;
-        this.productId = productId;
-        this.text = text;
         this.postedAt = postedAt;
     }
 }

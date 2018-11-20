@@ -16,12 +16,7 @@
 
 package com.example.android.persistence.ui;
 
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,18 +30,40 @@ import com.example.android.persistence.viewmodel.ProductViewModel;
 
 import java.util.List;
 
+import androidx.annotation.Nullable;
+import androidx.databinding.DataBindingUtil;
+import androidx.fragment.app.Fragment;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProviders;
+
 public class ProductFragment extends Fragment {
 
     private static final String KEY_PRODUCT_ID = "product_id";
+    private final CommentClickCallback mCommentClickCallback = new CommentClickCallback() {
+        @Override
+        public void onClick(Comment comment) {
+            // no-op
 
+        }
+    };
     private ProductFragmentBinding mBinding;
-
     private CommentAdapter mCommentAdapter;
+
+    /**
+     * Creates product fragment for specific product ID
+     */
+    public static ProductFragment forProduct(int productId) {
+        ProductFragment fragment = new ProductFragment();
+        Bundle args = new Bundle();
+        args.putInt(KEY_PRODUCT_ID, productId);
+        fragment.setArguments(args);
+        return fragment;
+    }
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
-            @Nullable Bundle savedInstanceState) {
+                             @Nullable Bundle savedInstanceState) {
         // Inflate this data binding layout
         mBinding = DataBindingUtil.inflate(inflater, R.layout.product_fragment, container, false);
 
@@ -55,14 +72,6 @@ public class ProductFragment extends Fragment {
         mBinding.commentList.setAdapter(mCommentAdapter);
         return mBinding.getRoot();
     }
-
-    private final CommentClickCallback mCommentClickCallback = new CommentClickCallback() {
-        @Override
-        public void onClick(Comment comment) {
-            // no-op
-
-        }
-    };
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
@@ -101,14 +110,5 @@ public class ProductFragment extends Fragment {
                 }
             }
         });
-    }
-
-    /** Creates product fragment for specific product ID */
-    public static ProductFragment forProduct(int productId) {
-        ProductFragment fragment = new ProductFragment();
-        Bundle args = new Bundle();
-        args.putInt(KEY_PRODUCT_ID, productId);
-        fragment.setArguments(args);
-        return fragment;
     }
 }
