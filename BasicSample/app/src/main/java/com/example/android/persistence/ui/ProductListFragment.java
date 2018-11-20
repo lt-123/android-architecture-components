@@ -20,7 +20,6 @@ import android.os.Bundle;
 import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 
 import com.example.android.persistence.R;
@@ -31,6 +30,7 @@ import com.example.android.persistence.viewmodel.ProductListViewModel;
 
 import java.util.List;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
@@ -42,6 +42,7 @@ import androidx.lifecycle.ViewModelProviders;
 public class ProductListFragment extends Fragment {
 
     public static final String TAG = "ProductListViewModel";
+
     private final ProductClickCallback mProductClickCallback = new ProductClickCallback() {
         @Override
         public void onClick(Product product) {
@@ -56,7 +57,7 @@ public class ProductListFragment extends Fragment {
 
     @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         mBinding = DataBindingUtil.inflate(inflater, R.layout.list_fragment, container, false);
 
@@ -72,7 +73,7 @@ public class ProductListFragment extends Fragment {
         final ProductListViewModel viewModel =
                 ViewModelProviders.of(this).get(ProductListViewModel.class);
 
-        mBinding.productsSearchBtn.setOnClickListener(new OnClickListener() {
+        mBinding.productsSearchBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Editable query = mBinding.productsSearchBox.getText();
