@@ -26,6 +26,7 @@ import com.example.android.observability.persistence.UserDao
 class ViewModelFactory(private val dataSource: UserDao) : ViewModelProvider.Factory {
 
     override fun <T : ViewModel> create(modelClass: Class<T>): T {
+        // modelClass 是否是UserViewModel::class的超类或相同类
         if (modelClass.isAssignableFrom(UserViewModel::class.java)) {
             return UserViewModel(dataSource) as T
         }

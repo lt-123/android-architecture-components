@@ -16,12 +16,9 @@
 
 package com.example.android.observability;
 
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.when;
-import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import com.example.android.observability.persistence.User;
 import com.example.android.observability.ui.UserViewModel;
+
 import org.hamcrest.Matchers;
 import org.junit.Before;
 import org.junit.Rule;
@@ -30,7 +27,13 @@ import org.mockito.ArgumentCaptor;
 import org.mockito.Captor;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+
+import androidx.arch.core.executor.testing.InstantTaskExecutorRule;
 import io.reactivex.Flowable;
+
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
 /**
  * Unit test for {@link UserViewModel}
